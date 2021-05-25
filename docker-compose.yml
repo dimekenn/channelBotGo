@@ -1,0 +1,17 @@
+  version: "3.3"
+  services:
+    postgres:
+      image: "postgres:9.6"
+      container_name: "postgres"
+      restart: "always"
+      ports:
+        - "5432:5432"
+      environment:
+        - POSTGRES_PASSWORD=mypassword
+      hostname: "172.17.0.1"
+    bot:
+      image: "telegrambotbeton"
+      depends_on:
+        - postgres
+      ports:
+        - "8181:8181"
